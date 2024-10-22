@@ -9,6 +9,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Sidebar from "./common/Sidebar";
 import Home from "./components/Home";
+import NotFound from "./components/NotFound";
 import Profiles from "./components/Profiles";
 import { RouteType } from "./model/routeType";
 import theme from "./theme/theme";
@@ -26,7 +27,7 @@ const routes: RouteType[] = [
     {
         id: "Data Import",
         path: "/data-import",
-        element: <Profiles />,
+        element: <NotFound />,
         icon: (
             <FileUploadIcon
                 sx={{ ml: 2, mr: 2, width: 30, height: 30 }}
@@ -37,7 +38,7 @@ const routes: RouteType[] = [
     {
         id: "Data Export",
         path: "/data-export",
-        element: <Profiles />,
+        element: <NotFound />,
         icon: (
             <FileDownloadIcon
                 sx={{ ml: 2, mr: 2, width: 30, height: 30 }}
@@ -64,7 +65,7 @@ const routes: RouteType[] = [
     {
         id: "Merge Suggestions",
         path: "/merge-suggestions",
-        element: <Profiles />,
+        element: <NotFound />,
         icon: (
             <MergeTypeIcon
                 sx={{
@@ -80,7 +81,7 @@ const routes: RouteType[] = [
     {
         id: "Merge History",
         path: "/merge-history",
-        element: <Profiles />,
+        element: <NotFound />,
         icon: (
             <HistoryIcon
                 sx={{
@@ -102,13 +103,26 @@ function App() {
             <BrowserRouter>
                 {/* Wrap content in a Box container for layout */}
                 <Box display="flex">
-                    {/* Sidebar */}
-                    <Sidebar routes={routes} />
+                    {/* Sidebar with fixed width */}
+                    <Box
+                        component="nav"
+                        sx={{
+                            width: 240, // Set fixed width for sidebar
+                            flexShrink: 0, // Prevent sidebar from shrinking
+                        }}
+                    >
+                        <Sidebar routes={routes} />
+                    </Box>
 
                     {/* Main content (Routes) */}
-                    <Box flexGrow={1} p={3}>
-                        {" "}
-                        {/* Grow to take remaining space */}
+                    <Box
+                        component="main"
+                        sx={{
+                            flexGrow: 1, // Grow to take remaining space
+                            p: 3,
+                            ml: "100px", // Prevent content from going under sidebar
+                        }}
+                    >
                         <Routes>
                             {routes.map((route) => (
                                 <Route

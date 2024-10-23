@@ -107,7 +107,7 @@ function App() {
                     <Box
                         component="nav"
                         sx={{
-                            width: 240, // Set fixed width for sidebar
+                            width: 80, // Set fixed width for sidebar
                             flexShrink: 0, // Prevent sidebar from shrinking
                         }}
                     >
@@ -120,7 +120,6 @@ function App() {
                         sx={{
                             flexGrow: 1, // Grow to take remaining space
                             p: 3,
-                            ml: "100px", // Prevent content from going under sidebar
                         }}
                     >
                         <Routes>

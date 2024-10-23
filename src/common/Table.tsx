@@ -1,42 +1,12 @@
 import { Box, Typography } from "@mui/material";
 import Paper from "@mui/material/Paper";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
-import { Profile } from "../model/profile";
 import theme from "../theme/theme";
 
 interface Props {
     data: any;
+    columns: GridColDef[];
 }
-
-// Table width: 1176
-const columns: GridColDef[] = [
-    { field: "first_name", headerName: "First name", width: 200 },
-    { field: "last_name", headerName: "Last name", width: 200 },
-    { field: "email", headerName: "Email", width: 230 },
-    { field: "phone_number", headerName: "Phone number", width: 170 },
-    { field: "address", headerName: "Address", width: 376 },
-    // {
-    //     field: "fullName",
-    //     headerName: "Full name",
-    //     description: "This column has a value getter and is not sortable.",
-    //     sortable: false,
-    //     width: 200,
-    //     valueGetter: (value, row) =>
-    //         `${row.firstName || ""} ${row.lastName || ""}`,
-    // },
-];
-
-const rows: Profile[] = [
-    { id: "1", lastName: "fadsgdasdsa", first_name: "Jon" },
-    { id: "2", lastName: "Lannister", first_name: "Cersei" },
-    { id: "3", lastName: "Lannister", first_name: "Jaime" },
-    { id: "4", lastName: "Stark", first_name: "Arya" },
-    { id: "5", lastName: "Targaryen", first_name: "Daenerys" },
-    { id: "6", lastName: "Melisandre", first_name: "gdsaghas" },
-    { id: "7", lastName: "Clifford", first_name: "Ferrara" },
-    { id: "8", lastName: "Frances", first_name: "Rossini" },
-    { id: "9", lastName: "Roxie", first_name: "Harvey" },
-];
 
 const paginationModel = { page: 1, pageSize: 10 };
 
@@ -45,7 +15,7 @@ export default function DataTable(props: Props) {
         <Paper
             sx={{
                 height: "100%",
-                width: "80%",
+                width: "100%",
                 backgroundColor: theme.palette.background.default,
                 mt: 10,
             }}
@@ -65,10 +35,14 @@ export default function DataTable(props: Props) {
 
             <DataGrid
                 rows={props.data}
-                columns={columns}
+                columns={props.columns.map((column) => ({
+                    ...column,
+                    flex: column.flex || 1, // Use the flex property to scale columns
+                }))}
                 initialState={{ pagination: { paginationModel } }}
                 pageSizeOptions={[5, 10, 20, 100]}
                 checkboxSelection
+                rowHeight={60} // Set row height here (in pixels)
                 sx={{
                     width: "100%",
                     border: 0,

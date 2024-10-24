@@ -1,16 +1,17 @@
+import { Dataset } from "@mui/icons-material";
+import BusinessIcon from "@mui/icons-material/Business";
 import FileDownloadIcon from "@mui/icons-material/FileDownload";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import HistoryIcon from "@mui/icons-material/History";
 import HomeIcon from "@mui/icons-material/Home";
 import MergeTypeIcon from "@mui/icons-material/MergeType";
-import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import { Box, CssBaseline, ThemeProvider } from "@mui/material";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Sidebar from "./common/Sidebar";
+import Datasets from "./components/Datasets";
 import Home from "./components/Home";
 import NotFound from "./components/NotFound";
-import Profiles from "./components/Profiles";
 import { RouteType } from "./model/routeType";
 import theme from "./theme/theme";
 
@@ -47,18 +48,18 @@ const routes: RouteType[] = [
         sidebarShow: true,
     },
     {
-        id: "Profiles",
-        path: "/profiles",
-        element: <Profiles />,
+        id: "Datasets",
+        path: "/datasets",
+        element: <Datasets />,
         icon: (
-            <PeopleAltIcon
+            <Dataset
                 sx={{
                     ml: 2,
                     mr: 2,
                     width: 30,
                     height: 30,
                 }}
-            ></PeopleAltIcon>
+            ></Dataset>
         ),
         sidebarShow: true,
     },
@@ -91,6 +92,22 @@ const routes: RouteType[] = [
                     height: 30,
                 }}
             ></HistoryIcon>
+        ),
+        sidebarShow: true,
+    },
+    {
+        id: "Organizations",
+        path: "/organizations",
+        element: <NotFound />,
+        icon: (
+            <BusinessIcon
+                sx={{
+                    ml: 2,
+                    mr: 2,
+                    width: 30,
+                    height: 30,
+                }}
+            ></BusinessIcon>
         ),
         sidebarShow: true,
     },

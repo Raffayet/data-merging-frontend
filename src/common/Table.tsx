@@ -18,7 +18,6 @@ export default function DataTable(props: Props) {
                 height: "100%",
                 width: "100%",
                 backgroundColor: theme.palette.background.default,
-                mt: 10,
             }}
         >
             <Box

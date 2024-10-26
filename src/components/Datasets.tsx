@@ -1,8 +1,9 @@
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { GridColDef } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
 import DataTable from "../common/Table";
 import { DatasetService } from "../service/dataset.service";
+import theme from "../theme/theme";
 
 // Table total width: 1350px
 // const columns: GridColDef[] = [
@@ -58,8 +59,26 @@ const Datasets = () => {
     };
 
     return (
-        <Box sx={{ display: "flex", justifyContent: "center" }}>
-            <DataTable data={tableData} columns={columns} title="Datasets" />
+        <Box>
+            <Box>
+                <Typography
+                    variant="h4"
+                    sx={{
+                        color: theme.palette.primary.main,
+                        mb: 5,
+                        textAlign: "center",
+                    }}
+                >
+                    Datasets
+                </Typography>
+            </Box>
+            <Box sx={{ display: "flex", justifyContent: "center" }}>
+                <DataTable
+                    data={tableData}
+                    columns={columns}
+                    title="Datasets"
+                />
+            </Box>
         </Box>
     );
 };
